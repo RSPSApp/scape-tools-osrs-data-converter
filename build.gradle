@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.2.41'
+    ext.kotlin_version = '1.6.10'
 
     repositories {
         mavenCentral()
@@ -16,7 +16,7 @@ allprojects  {
 }
 
 wrapper {
-    gradleVersion = '4.7'
+    gradleVersion = '7.3'
 }
 
 subprojects {
@@ -29,18 +29,18 @@ subprojects {
     repositories {
         mavenCentral()
         mavenLocal()
-        maven { url "http://repo.maven.apache.org/maven2" }
+        maven { url "https://repo.maven.apache.org/maven2" }
         maven { url "https://repo.adobe.com/nexus/content/repositories/public/"}
     }
 
     dependencies {
-        compile group: 'junit', name: 'junit', version:'4.12'
-        compile group: 'org.apache.commons', name: 'commons-compress', version:'1.9'
-        compile group: 'com.google.guava', name: 'guava', version:'18.0'
-        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+        implementation group: 'junit', name: 'junit', version:'4.12'
+        implementation group: 'org.apache.commons', name: 'commons-compress', version:'1.9'
+        implementation group: 'com.google.guava', name: 'guava', version:'18.0'
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-        testCompile 'junit:junit:4.11'
-        testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+        testImplementation 'junit:junit:4.11'
+        testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     }
 
 }

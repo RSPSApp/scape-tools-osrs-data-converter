@@ -1,10 +1,18 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
 description = 'Old School Data Converter'
 
-apply plugin: 'application'
+javafx {
+    version = "17"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
 
 dependencies {
-    compile group: 'com.google.code.gson', name: 'gson', version:'2.8.4'
-    compile files('lib/openrs.jar')
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.4'
+    implementation files('lib/openrs.jar')
 }
 
 mainClassName = 'io.nshusa.app.osdc.App'
@@ -15,6 +23,7 @@ jar {
     manifest {
         attributes 'Main-Class': mainClassName
     }
+    duplicatesStrategy = 'exclude'
 
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    from { configurations.runtimeClasspath.filter { it.exists() }.collect { it.isDirectory() ? it : zipTree(it) } }
 }
