@@ -193,7 +193,11 @@ open class Controller : BaseController() {
             override fun call(): Boolean {
                 Cache(FileStore.open(cachePath)).use { cache ->
                     val list = ItemTypeList()
-                    list.initialize(cache)
+                    try {
+                        list.initialize(cache)
+                    }catch (ex: java.lang.Exception) {
+                        throw ex
+                    }
 
                     val fieldPrinter = ClassFieldPrinter()
                     fieldPrinter.setDefaultObject(ItemType(0))

@@ -72,8 +72,7 @@ open class TaskController : BaseController() {
             pause.play()
         })
 
-        task.setOnFailed({ _ ->
-
+        task.setOnFailed({ e ->
             val pause = PauseTransition(Duration.seconds(2.0))
 
             pause.setOnFinished { _ ->

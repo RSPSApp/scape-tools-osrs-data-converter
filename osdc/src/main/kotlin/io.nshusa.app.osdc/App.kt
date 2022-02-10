@@ -21,18 +21,6 @@ class App: Application() {
     override fun init() {
 
         try {
-            Scanner(URL(versionUrl).openStream()).use { it ->
-                val version = it.nextLine().trim()
-                latestVersion = version
-                if (VersionUtils.versionCompare(osdcVersion, version) < 0) {
-                    shouldUpdate = true
-                }
-            }
-        } catch (ex: IOException) {
-            ex.printStackTrace()
-        }
-
-        try {
             val file = File("./version.properties")
 
             if (file.exists()) {
@@ -89,16 +77,9 @@ class App: Application() {
 
         var latestVersion = osdcVersion
 
-        val versionUrl = "https://dl.dropboxusercontent.com/s/hy1wsrd8gni9od1/version.txt"
-
-        var osrsVersion = 177
+        var osrsVersion = 202
 
         var stage: Stage = Stage()
-
-        @JvmStatic
-        fun main(args:Array<String>) {
-            launch(App::class.java)
-        }
 
     }
 }
